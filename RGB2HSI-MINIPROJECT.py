@@ -3,16 +3,33 @@ import numpy as np
 from matplotlib import pyplot as plt
 import math
 import colorsys
+#import PIL import Image
+
+
 
 # Loads image
 image = cv2.imread('pyramid.png')
 IMG = image/255
 
+# Get the image width & height of each pixel
+[xs, ys] = IMG.file.size
+max_intensity=100
+hues = {}
+
+# Examine each pixel in the image
+for x in xrange(0, xs):
+    for y in xrange(0, ys):
+
+# Get RGB value of each pixel
+        [R, G, B] = IMG[x, y]
+
+
+
 def RGB2HSI(R, G, B):
     eps = 1E-6
     if(0<=R<=255 and 0<=G<=255 and 0<=B<=255):
         d = float(R+G+B)
-        r = IMG*float(R)/d # The normalzation for the RGB image needed?
+        r = IMG*float(R)/d # The normalization for the RGB image needed?
         g = IMG*float(G)/d
         b = IMG*float(B)/d
         numer = float(0.5*((r-g)+(r-b)))
@@ -28,27 +45,11 @@ def RGB2HSI(R, G, B):
         S = s*100
         I = i*255
 
-    while(1):
-        cv2.imshow('image', )
-        k = cv2.waitKey(5) & 0xFF
-        if k == 27:
-            break
+# Calling the RGB2HSI function to convert the colors
+ [H, S, I] =  RGB2HSI(R, G, B)
 
+cv2.imshow('image', IMG)
+cv2.waitKey(0)
 
-#while(1):
+cv2.destroyAllWindows()
 
-    #cv2.imshow('image',image)
-
-
-    #k = cv2.waitKey(5) & 0xFF
-    #if k == 27:
-     #   break
-
-#cv2.destroyAllWindows()
-
-
-
-
-
-
-#R = I(:,:,1)
