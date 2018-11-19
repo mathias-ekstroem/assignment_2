@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import math
 import colorsys
-#import PIL import Image
+# import PIL import Image
 
 
 
@@ -12,16 +12,16 @@ image = cv2.imread('pyramid.png')
 IMG = image/255
 
 # Get the image width & height of each pixel
-[xs, ys] = IMG.file.size
-max_intensity=100
-hues = {}
+xrange = IMG[0].shape # width
+yrange = IMG[1].shape # height
 
 # Examine each pixel in the image
-for x in xrange(0, xs):
-    for y in xrange(0, ys):
+for x in range(0, xrange[0]):
+    for y in range(0, yrange[0]):
+
 
 # Get RGB value of each pixel
-        [R, G, B] = IMG[x, y]
+       [r, g, b] = IMG
 
 
 
@@ -44,9 +44,10 @@ def RGB2HSI(R, G, B):
         H = h*(180/math.pi)
         S = s*100
         I = i*255
+        return H, S, I
 
 # Calling the RGB2HSI function to convert the colors
- [H, S, I] =  RGB2HSI(R, G, B)
+[H, S, I] =  RGB2HSI(IMG[x, y])
 
 cv2.imshow('image', IMG)
 cv2.waitKey(0)
